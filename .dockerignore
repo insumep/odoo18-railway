@@ -1,0 +1,75 @@
+# flyctl launch added from .gitignore
+**/.cache
+**/_pycache_
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/*.log
+**/*.swp
+**/.env
+**/.env.*
+**/*.egg-info
+**/.eggs
+**/.idea
+**/.vscode
+
+
+# flyctl launch added from odoo/.gitignore
+# sphinx build directories
+odoo/**/_build
+
+# dotfiles
+odoo/**/.*
+!odoo/**/.gitignore
+!odoo/**/.github
+!odoo/**/.mailmap
+# compiled python files
+odoo/**/*.py[co]
+odoo/**/__pycache__
+# setup.py egg_info
+odoo/**/*.egg-info
+# emacs backup files
+odoo/**/*~
+# hg stuff
+odoo/**/*.orig
+odoo/**/status
+# odoo filestore
+odoo/**/odoo/filestore
+# maintenance migration scripts
+odoo/**/odoo/addons/base/maintenance
+# window installation config file
+odoo/odoo.conf
+
+# generated for windows installer?
+odoo/**/install/win32/*.bat
+odoo/**/install/win32/meta.py
+
+# needed only when building for win32
+odoo/**/setup/win32/static/less
+odoo/**/setup/win32/static/wkhtmltopdf
+odoo/**/setup/win32/static/postgresql*.exe
+
+# js tooling
+odoo/**/node_modules
+odoo/**/jsconfig.json
+odoo/**/tsconfig.json
+odoo/**/package-lock.json
+odoo/**/package.json
+odoo/**/.husky
+
+# various virtualenv
+odoo/bin
+odoo/build
+odoo/dist
+odoo/include
+odoo/lib
+odoo/man
+odoo/share
+odoo/src
+
+# flyctl launch added from odoo/addons/point_of_sale/tools/posbox/.gitignore
+odoo/addons/point_of_sale/tools/posbox/**/raspios.img
+odoo/addons/point_of_sale/tools/posbox/**/iotbox.img
+odoo/addons/point_of_sale/tools/posbox/**/root_mount
+odoo/addons/point_of_sale/tools/posbox/**/overwrite_before_init/usr/bin/ngrok
+fly.toml

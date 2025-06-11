@@ -44,4 +44,4 @@ EXPOSE 8080
 ENV PORT=8080
 
 # Run Odoo with correct config
-CMD ["python3", "odoo-bin", "-c", "odoo.conf"]
+CMD ["sh", "-c", "python3 odoo-bin -c odoo.conf --http-port=$PORT"]
