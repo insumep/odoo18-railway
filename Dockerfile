@@ -1,32 +1,47 @@
-FROM python:3.10
+FROM python:3.10-slim
 
-# Install dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git wget nodejs npm python3-dev libxml2-dev libxslt1-dev \
-    zlib1g-dev libsasl2-dev libldap2-dev libjpeg-dev libpq-dev \
-    build-essential libssl-dev libffi-dev && \
-    pip install --upgrade pip
+    build-essential \
+    libpq-dev \
+    libxml2-dev \
+    libxslt1-dev \
+    zlib1g-dev \
+    libsasl2-dev \
+    libldap2-dev \
+    libjpeg-dev \
+    libffi-dev \
+    git \
+    wget \
+    curl \
+    nodejs \
+    npm \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-# Create odoo user
+# Create user
 RUN useradd -ms /bin/bash odoo
 
 # Set working directory
 WORKDIR /opt/odoo
 
-# Copy source code
+# Copy project files
 COPY . /opt/odoo
 
-# Install python dependencies
-RUN pip install -r requirements.txt
+# Install Python dependencies
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
 # Fix permissions
 RUN chown -R odoo:odoo /opt/odoo
 
-# Switch to odoo user
+# Switch to non-root user
 USER odoo
 
-# Expose port
-EXPOSE 8069
+# Expose the Odoo port
+EXPOSE 8080
 
-# Start Odoo
+# Railway sets PORT env var dynamically
+ENV PORT=8080
+
+# Run Odoo with correct config
 CMD ["python3", "odoo-bin", "-c", "odoo.conf"]
